@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Учебная лабораторная работа по аутентификации и серверным сессиям">
+  <title>Лабораторная №12 — Аутентификация</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">Языки и технология программирования</p>
+      <h1>Лабораторная работа №12</h1>
+      <p>Аутентификация, роли и серверные сессии</p>
+    </header>
+
+    <section class="card" id="loginCard" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Вход в систему</h2>
+      <form id="loginForm">
+        <label for="username">Логин</label>
+        <input id="username" name="username" autocomplete="username" required>
+        <label for="password">Пароль</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Войти</button>
+      </form>
+      <p class="notice">Только учебный проект. Тестовые учетные записи указаны в README.</p>
+    </section>
+
+    <section class="card" id="dashboard" hidden aria-live="polite">
+      <div class="profile-row">
+        <div>
+          <p class="eyebrow">Вы вошли как</p>
+          <h2 id="profileName"></h2>
+          <p id="profileMeta" class="muted"></p>
+        </div>
+        <button class="secondary" id="logoutButton" type="button">Выйти</button>
+      </div>
+      <p id="sessionNote" class="notice">Сессия истекает после 15 минут бездействия.</p>
+      <div id="studentPanel" class="role-panel" hidden>
+        <h3>Базовый вариант — кабинет студента</h3>
+        <button type="button" data-load="student">Загрузить мои занятия</button>
+        <ul id="studentLessons"></ul>
+      </div>
+      <div id="teacherPanel" class="role-panel" hidden>
+        <h3>Средний вариант — кабинет преподавателя</h3>
+        <button type="button" data-load="teacher">Открыть сводку преподавателя</button>
+        <p id="teacherSummary"></p>
+      </div>
+      <div id="adminPanel" class="role-panel" hidden>
+        <h3>Повышенный вариант — управление пользователями</h3>
+        <p>Доступ к API проверяется сервером по роли администратора.</p>
+        <div class="button-row">
+          <button type="button" data-load="users">Пользователи</button>
+          <button type="button" data-load="audit">Журнал событий</button>
+        </div>
+        <div id="adminResult" class="result-box"></div>
+      </div>
+    </section>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <footer>Демонстрационные данные и сессии хранятся в памяти процесса.</footer>
+  </main>
+</body>
+</html>
